@@ -17,7 +17,6 @@ const Navbar = () => {
          </li>
          <li><Link to='/contactUs'>Contact Us</Link>
          </li>
-         <li><Link to='/appointment' className=''>Appointment</Link></li>
       </React.Fragment>
 
    return (
@@ -51,7 +50,7 @@ const Navbar = () => {
                <Link to='/' className="btn btn-ghost normal-case text-xl">
                   <div className='flex items-center ml-2 font-bold lg:text-3xl text-base'>
                      {/* <img className='lg:w-14 w-10 mr-2' src='https://i.ibb.co/KNR8XZg/image-removebg-preview.png' alt="" /> */}
-                     <h3 className=''> Doctors Protal</h3>
+                     <h3 className=''> MoBo Sell</h3>
                   </div>
                </Link>
             </div>
@@ -59,7 +58,7 @@ const Navbar = () => {
             <div className="mr-6 navbar-end">
                <div className=" hidden  lg:flex lg:text-lg font-semibold">
                   <ul className="menu menu-horizontal">
-                     <li><Link to='/appointment'>Appointment</Link></li>
+                     <li><Link to='/categories'>Categories</Link></li>
                      <li className='mx-1'><Link to='about'>About</Link></li>
                      <li className='mx-1'><Link to='contactUs'>Contact Us</Link></li>
 
