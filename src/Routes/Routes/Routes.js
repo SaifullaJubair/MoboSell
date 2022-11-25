@@ -7,6 +7,7 @@ import User from "../../Shared/User/User";
 import Register from "../../Pages/Register/Register";
 
 import UnKnownRoutes from "../UnKnownRoutes/UnKnownRoutes";
+import Blog from "../../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
    {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
          {
             path: '/',
             element: <Home></Home>
+         },
+         {
+            path: '/blog',
+            element: <Blog></Blog>
          },
          {
             path: '/login',

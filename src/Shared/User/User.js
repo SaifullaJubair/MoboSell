@@ -7,6 +7,7 @@ const User = () => {
       <div>
          name: {user?.displayName}
          email: {user?.email}
+         <img src={user?.photoURL} alt="" />
       </div>
    );
 };

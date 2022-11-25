@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -62,6 +63,9 @@ const Register = () => {
 
    return (
       <div className='h-[800px] flex justify-center items-center'>
+         <Helmet>
+            <title>Sign-Up</title>
+         </Helmet>
          <div className='w-full lg:w-96 p-7'>
             <h2 className='text-xl text-center'>Sign Up</h2>
             <form onSubmit={handleSubmit(handleSignUp)}>
@@ -95,7 +99,7 @@ const Register = () => {
                   className="block w-full p-3 my-4 text-center rounded-lg dark:text-white font-bold bg-gradient-to-r from-primary to-secondary " />
                {signUpError && <p className='text-red-600'>{signUpError}</p>}
             </form>
-            <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
+            <p>Already have an account! <Link className='text-secondary' to="/login">Login</Link></p>
             <div className="divider">OR</div>
             <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
