@@ -9,6 +9,7 @@ import Register from "../../Pages/Register/Register";
 import UnKnownRoutes from "../UnKnownRoutes/UnKnownRoutes";
 import Blog from "../../Pages/Blog/Blog";
 import Categories from "../../components/Categories/Categories";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
    {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
          },
          {
             path: '/user',
-            element: <User></User>
+            element: <PrivateRoute><User></User></PrivateRoute>
          },
 
       ]
