@@ -13,6 +13,8 @@ const Home = () => {
          <TestCategories></TestCategories>
          <Categories></Categories>
          <Care></Care>
+
+
       </div>
    );
 };
