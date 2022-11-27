@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Context/AuthProvider';
-import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../Context/AuthProvider';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 
 const User = () => {
