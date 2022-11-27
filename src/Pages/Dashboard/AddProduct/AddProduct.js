@@ -23,8 +23,19 @@ const AddProduct = () => {
    })
    // console.log(categories)
 
+   // const handleAddProduct = data => {
+   //    console.log(data.category)
+   //    const info = data.category.split('-')
+   //    const id = info[0]
+   //    const name = info[1]
+   //    console.log('id:', id)
+   //    console.log("name:", name);
+   // }
 
    const handleAddProduct = data => {
+      const info = data.category.split('-')
+      const category_id = info[0]
+      const categoryName = info[1]
       // console.log(data.image[0]);
       const image = data.image[0];
       const formData = new FormData();
@@ -41,7 +52,8 @@ const AddProduct = () => {
                console.log(imgData.data.url)
                const product = {
                   name: data.productName,
-                  category: data.category,
+                  categoryName,
+                  category: category_id,
                   email: user?.email,
                   sellerName: data.sellerName,
                   location: data.location,
@@ -51,7 +63,6 @@ const AddProduct = () => {
                   number: data.number,
                   description: data.description,
                   image: imgData.data?.url,
-
                }
                console.log(product);
                //save categories info to the database
@@ -122,7 +133,7 @@ const AddProduct = () => {
                            <option className='bg-base-300 text-black'
                               key={category._id}
                               // value={category.name}
-                              value={category._id}
+                              value={`${category._id}-${category.name}`}
                            >{category.name}
                            </option>)
                      }
@@ -211,13 +222,13 @@ const AddProduct = () => {
                   <label className="label"> <span className="label-text">Product Image</span></label>
                   <input type="file" {...register("image", {
                      required: "Photo is Required"
-                  })} className="input input-bordered w-full " />
+                  })} className="file-input file-input-primary  bg-base-200 w-full " />
                   {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                </div>
                <input
                   type="submit"
                   value="Add Product"
-                  className="block w-full p-3 text-center rounded-lg dark:text-gray-900 bg-gradient-to-r from-primary to-secondary mt-4" />
+                  className="block w-full p-3 text-center rounded-lg text-white bg-gradient-to-r from-primary to-secondary mt-4" />
             </form >
          </div >
 

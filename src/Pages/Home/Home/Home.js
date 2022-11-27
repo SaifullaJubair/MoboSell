@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Categories from '../../../components/Categories/Categories';
+import Categories from '../Categories/Categories';
 import Banner from '../Banner/Banner';
 import Care from '../Care/Care';
 import TestCategories from '../TestCategories/TestCategories';

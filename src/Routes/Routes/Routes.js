@@ -8,11 +8,12 @@ import Register from "../../Pages/Register/Register";
 
 import UnKnownRoutes from "../UnKnownRoutes/UnKnownRoutes";
 import Blog from "../../Pages/Blog/Blog";
-import Categories from "../../components/Categories/Categories";
+import Categories from "../../Pages/Home/Categories/Categories";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
+import { id } from "date-fns/locale";
 
 const router = createBrowserRouter([
    {
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
          },
          {
             path: '/categories',
-            element: <Categories></Categories>
+            element: <Categories></Categories>,
+         },
+         {
+            path: '/category/:id',
+            element: <Categories></Categories>,
+            loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
          },
          {
             path: '/login',
