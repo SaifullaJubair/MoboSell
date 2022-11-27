@@ -14,6 +14,7 @@ import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import { id } from "date-fns/locale";
+import AddCategories from "../../Pages/Dashboard/AddCategories/AddCategories";
 
 const router = createBrowserRouter([
    {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
          {
             path: '/dashboard/add-product',
             element: <AddProduct></AddProduct>
+         },
+         {
+            path: '/dashboard/add-categories',
+            element: <AddCategories></AddCategories>
          },
       ]
    },

@@ -29,6 +29,7 @@ const DashboardLayout = () => {
                   {/* <!-- Sidebar content here --> */}
                   <li><Link to='/dashboard'>My Orders</Link></li>
                   <li><Link to='/dashboard/add-product'>Add Product</Link></li>
+                  <li><Link to='/dashboard/add-categories'>Add Categories</Link></li>
 
                   {/* {
                      isAdmin && <>

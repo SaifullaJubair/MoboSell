@@ -67,7 +67,11 @@ const Blog = () => {
                React vs. Angular vs. Vue?
             </div>
             <div className="collapse-content">
-               <p>Angular vs React</p>
+               <p>There are three frameworks for building web applications that every frontend developer has heard about: React, Vue.js, and Angular.
+
+                  React is a UI library, Angular is a fully-fledged front-end framework, while Vue.js is a progressive framework.
+
+                  They can be used almost interchangeably to build front-end applications, but they’re not 100 percent the same.</p>
             </div>
          </div>
       </div>
