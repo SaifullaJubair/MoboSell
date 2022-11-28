@@ -77,7 +77,7 @@ const AddProduct = () => {
                   .then(res => res.json())
                   .then(result => {
                      console.log(result);
-                     toast.success(`${data.name} is added successfully`)
+                     toast.success(`${data.productName} is added successfully`)
                      // Navigate('/dashboard/manageCategories')
                   })
             }

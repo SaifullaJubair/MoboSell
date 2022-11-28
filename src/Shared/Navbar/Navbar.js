@@ -58,7 +58,6 @@ const Navbar = () => {
             <div className="mr-6 navbar-end">
                <div className=" hidden  lg:flex lg:text-lg font-semibold">
                   <ul className="menu menu-horizontal">
-                     <li><Link to='/categories'>Categories</Link></li>
                      <li className='mx-1'><Link to='about'>About</Link></li>
                      <li className='mx-1'><Link to='contactUs'>Contact Us</Link></li>
 
