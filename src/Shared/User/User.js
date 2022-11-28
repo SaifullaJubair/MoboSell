@@ -34,7 +34,7 @@ const User = () => {
                   image: imgData.data?.url
                }
                //save categories info to the database
-               fetch('http://localhost:5000/categories', {
+               fetch('https://mobosell-server-a12.vercel.app/categories', {
                   method: 'POST',
                   headers: {
                      'content-type': 'application/json',

@@ -34,12 +34,12 @@ const router = createBrowserRouter([
          {
             path: '/category/:id',
             element: <Products></Products>,
-            loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+            loader: ({ params }) => fetch(`https://mobosell-server-a12.vercel.app/category/${params.id}`)
          },
          {
             path: '/product/:id',
             element: <ProductDetails></ProductDetails>,
-            loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+            loader: ({ params }) => fetch(`https://mobosell-server-a12.vercel.app/product/${params.id}`)
          },
          {
             path: '/login',

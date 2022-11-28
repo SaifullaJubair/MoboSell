@@ -34,7 +34,7 @@ const ProductDetails = () => {
       }
       console.log(booking)
 
-      fetch('http://localhost:5000/bookings', {
+      fetch('https://mobosell-server-a12.vercel.app/bookings', {
          method: 'POST',
          headers: {
             'content-type': 'application/json'
