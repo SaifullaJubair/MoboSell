@@ -47,18 +47,36 @@ const Blog = () => {
                </p>
             </div>
          </div>
-         <div tabIndex={0} className="collapse border border-base-300 bg-base-100 rounded-box my-4">
+         <div
+            tabIndex={0}
+            className="collapse border border-base-300 bg-base-100 rounded-box my-4"
+         >
             <div className="collapse-title text-xl font-medium">
-               Angular vs React
+               What is unit test? Why should we write unit test?
             </div>
             <div className="collapse-content">
-               <p>If the choice you’re making is based on Angular vs React alone, then you’ll simply need to consider the pros and cons discussed for those libraries in this post. But overall, keep in mind that both libraries can be used for mobile and web apps, while Angular is generally better for more complex apps that are enterprise-ready.
-
-                  React often requires extra modules and components, which keeps the core library small, but means there’s extra work involved when incorporating outside tools. Angular, on the other hand, is more of a full-fledged solution that doesn’t require extras like React often does, though it does have a steeper learning curve for its core compared to React.
-
-                  React is more suitable for intermediate to advanced JavaScript developers who are familiar with concepts from ES6 and up, while Angular favors those same developers who are also familiar with TypeScript.
-
-
+               <p>
+                  Unit tests are typically automated tests written and run
+                  by software developers to ensure that a section of an
+                  application (known as the "unit") meets its design and
+                  behaves as intended. In procedural programming, a unit
+                  could be an entire module, but it is more commonly an
+                  individual function or procedure.
+               </p>
+               <p>
+                  Unit testing is something you do as you're writing code.
+                  This testing is testing your view how things should work
+                  (on the level of class/method/algorithm) and it supports
+                  you when developing as you can run through the tests
+                  before and after making changes to see that things are
+                  still according to the tests you have in place. See this
+                  as something that will aid the programmer as he/she
+                  works. Further, the tests will also provide a way to see
+                  how something is supposed to work for anyone looking at
+                  the code. TDD (Test-Driven Development) is not changing
+                  this concept, rather highlighting that the one coding
+                  needs to first think how it should work and what to
+                  expect.
                </p>
             </div>
          </div>

@@ -11,13 +11,7 @@ const Navbar = () => {
          .then(() => { })
          .catch(error => console.log(error))
    }
-   const menuItems =
-      <React.Fragment>
-         <li><Link to='/about'>About</Link>
-         </li>
-         <li><Link to='/blog'>Contact Us</Link>
-         </li>
-      </React.Fragment>
+
 
    return (
       <div>
@@ -30,11 +24,11 @@ const Navbar = () => {
                   <ul tabIndex={1} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 
                      <li><Link to='/'>Home</Link></li>
-                     {menuItems}
+                     <li><Link to='/blog'>Blog</Link>
+                     </li>
                      {
                         user?.uid ?
                            <>
-                              <li><Link to='review'>Review</Link></li>
                               <li><Link to='dashboard'> DashBoard</Link></li>
                               <li><button className='nav' onClick={handleLogOut} > Logout</button></li>
 
@@ -49,8 +43,8 @@ const Navbar = () => {
                </div>
                <Link to='/' className="btn btn-ghost normal-case text-xl">
                   <div className='flex items-center ml-2 font-bold lg:text-3xl text-base'>
-                     {/* <img className='lg:w-14 w-10 mr-2' src='https://i.ibb.co/KNR8XZg/image-removebg-preview.png' alt="" /> */}
-                     <h3 className=''> MoBo Sell</h3>
+                     <img className='lg:w-14 w-10 mr-2' src='https://i.ibb.co/1R5TbcM/image.png' alt="" />
+                     <h3 className=''> MoboSell</h3>
                   </div>
                </Link>
             </div>
@@ -58,14 +52,13 @@ const Navbar = () => {
             <div className="mr-6 navbar-end">
                <div className=" hidden  lg:flex lg:text-lg font-semibold">
                   <ul className="menu menu-horizontal">
-                     <li className='mx-1'><Link to='about'>About</Link></li>
-                     <li className='mx-1'><Link to='contactUs'>Contact Us</Link></li>
+
+                     <li className='mx-1'><Link to='blog'>Blog</Link></li>
 
 
                      {
                         user?.uid ?
                            <>
-                              <li><Link to='my_review' className='lg:text-lg  text-xs font-semibold nav'>Review</Link></li>
                               <li><Link to='dashboard'> DashBoard</Link></li>
                               <button className='mx-2 lg:text-lg text-xs font-semibold nav' onClick={handleLogOut}> Logout</button>
 
