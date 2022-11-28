@@ -15,6 +15,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import { id } from "date-fns/locale";
 import AddCategories from "../../Pages/Dashboard/AddCategories/AddCategories";
+import Products from "../../Pages/Home/Products/Products";
 
 const router = createBrowserRouter([
    {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
          },
          {
             path: '/category/:id',
-            element: <Categories></Categories>,
+            element: <Products></Products>,
             loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
          },
          {
