@@ -28,7 +28,7 @@ const AddCategories = () => {
                console.log(imgData.data.url)
                const category = {
                   name: data.name,
-                  email: data.email,
+                  description: data.description,
                   image: imgData.data?.url
                }
                //save categories info to the database
@@ -65,47 +65,33 @@ const AddCategories = () => {
 
          <div className='w-full max-w-md p-8 space-y-3 rounded-xl   mx-auto my-12 text-black">
       <h1 className="text-2xl font-bold text-center'>
-            <h1>Add A Category</h1>
+            <h1>Add A Product Category</h1>
             <form onSubmit={handleSubmit(handleAddCategory)}>
                <div className="form-control  ">
-                  <label className="label"> <span className="label-text">Name</span></label>
+                  <label className="label"> <span className="label-text">Category Name</span></label>
                   <input type="text" {...register("name", {
                      required: "Name is Required"
                   })} className="input input-bordered w-full " />
                   {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                </div>
                <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Email</span></label>
-                  <input type="email" {...register("email", {
+                  <label className="label"> <span className="label-text">Description</span></label>
+                  <textarea type="text" {...register("description", {
                      required: true
-                  })} className="input input-bordered w-full " />
-                  {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                  })} rows="3" className="w-full p-3 mb-6 border rounded-lg " />
+                  {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
                </div>
-               {/* <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Specialty</span></label>
-                  <select {...register('specialty')}
-                     className="select  select-bordered font-bold w-full text-black">
-                     {
-                        specialties?.map(specialty =>
-                           <option className='bg-base-300 text-black'
-                              key={specialty._id}
-                              value={specialty.name}
-                           >{specialty.name}
-                           </option>)
-                     }
-                  </select>
 
-               </div> */}
                <div className="form-control  text-black ">
                   <label className="label"> <span className="label-text">Photo</span></label>
                   <input type="file" {...register("image", {
                      required: "Photo is Required"
-                  })} className="input input-bordered w-full " />
+                  })} className="file-input file-input-primary  bg-base-200 w-full " />
                   {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                </div>
                <input
                   type="submit"
-                  value="Add Doctor"
+                  value="Add Category"
                   className="block w-full p-3 text-center rounded-lg dark:text-gray-900 bg-gradient-to-r from-primary to-secondary mt-4" />
             </form >
          </div >
@@ -113,6 +99,5 @@ const AddCategories = () => {
       </div>
    );
 };
-
 
 export default AddCategories;

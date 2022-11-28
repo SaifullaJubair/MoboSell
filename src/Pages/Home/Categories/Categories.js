@@ -4,14 +4,14 @@ import Category from './Category';
 
 
 const Categories = () => {
-   const [products, setProducts] = useState([]);
+   const [categories, setCategories] = useState([]);
    useEffect(() => {
-      fetch('http://localhost:5000/products')
+      fetch('http://localhost:5000/categories')
          .then(res => res.json())
-         .then(data => setProducts(data))
+         .then(data => setCategories(data))
 
    }, [])
-   console.log(products)
+   console.log(categories)
    return (
       <div>
          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -125,9 +125,9 @@ const Categories = () => {
             </div>
          </div>
          {
-            products.map(product => <Category
-               key={product._id}
-               product={product}
+            categories.map(category => <Category
+               key={category._id}
+               category={category}
             ></Category>)
          }
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 
-const Category = ({ product }) => {
+const Category = ({ category }) => {
 
-   const { _id, name, category, image, resellPrice, location } = product
+   const { _id, name, description, image } = category
 
    return (
       <div>
@@ -19,9 +19,9 @@ const Category = ({ product }) => {
             </figure>
             <div className="card-body">
                <h2 className="card-title">{name}</h2>
-               <p>If a dog chews shoes whose shoes does he choose?</p>
+               <p>{description}</p>
                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Buy Now</button>
+                  <button className="btn btn-primary">View All</button>
                </div>
             </div>
          </div>
