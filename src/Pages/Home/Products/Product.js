@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import PtoSGradentBtn from '../../../components/Button/PtoSGradentBtn';
 const Product = ({ product }) => {
    const { _id, image, name, sellerName, location, description, originalPrice, resellPrice } = product
    return (
@@ -19,8 +20,8 @@ const Product = ({ product }) => {
             <p className='text-xl text-start truncate ...'>{description}</p>
             <p className='text-xl text-start '> Price: <span className=' text-orange-600'>$ {originalPrice}</span> </p>
             <div className="card-actions ">
-               <Link to={`/service/${_id}`}>
-                  <button className="btn  bg-amber-400 rounded-lg">Details</button>
+               <Link to={`/product/${_id}`}>
+                  <PtoSGradentBtn>Details</PtoSGradentBtn>
                </Link>
             </div>
          </div>

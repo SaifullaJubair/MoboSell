@@ -60,9 +60,11 @@ const AddProduct = () => {
                   originalPrice: data.originalPrice,
                   resellPrice: data.resellPrice,
                   purchaseYear: data.purchaseYear,
+                  condition: data.condition,
                   number: data.number,
                   description: data.description,
                   image: imgData.data?.url,
+                  userImg: user?.photoURL
                }
                console.log(product);
                //save categories info to the database
