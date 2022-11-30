@@ -10,9 +10,9 @@ const Care = () => {
                data-aos-anchor-placement="top-center">
                <div className="max-w-xl mb-6">
 
-                  <h2 className="font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none max-w-lg mb-6">
-                     <h1>Download our app</h1>
-                  </h2>
+                  <h1 className="font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none max-w-lg mb-6">
+                     <p>Download our app</p>
+                  </h1>
                   <p className="text-gray-700 text-base md:text-lg">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae. explicabo.</p>
                </div>
                <div className="flex items-center space-x-3">

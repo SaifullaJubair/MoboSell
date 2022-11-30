@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import ConformationModal from '../../../Shared/ConformationModal/ConformationModal';
 

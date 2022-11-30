@@ -38,6 +38,7 @@ const ProductDetails = () => {
          phone,
          location,
          productId: _id,
+         image,
 
       }
       // console.log(booking)
