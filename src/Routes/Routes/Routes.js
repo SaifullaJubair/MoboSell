@@ -21,7 +21,6 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import axios from "axios";
 import SellerRoute from "../SellerRoutes/SellerRoutes";
-import BuyerRoute from "../SellerRoutes/SellerRoutes";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import ReportedProduct from "../../Pages/Dashboard/ReportedProduct/ReportedProduct";

@@ -7,16 +7,16 @@ import Loading from '../../../Shared/Loading/Loading';
 
 const ManageProducts = () => {
 
-   const [deletingDoctor, setDeletingDoctor] = useState(null);
+   const [deletingProduct, setDeletingProduct] = useState(null);
    const closeModal = () => {
-      setDeletingDoctor(null)
+      setDeletingProduct(null)
    }
 
-   const { data: doctors, refetch } = useQuery({
-      queryKey: ['doctors'],
+   const { data: products, refetch } = useQuery({
+      queryKey: ['products'],
       queryFn: async () => {
          try {
-            const res = await fetch('http://localhost:5000/doctors', {
+            const res = await fetch('http://localhost:5000/products', {
                headers: {
                   authorization: `bearer ${localStorage.getItem('accessToken')}`
                }
@@ -28,9 +28,9 @@ const ManageProducts = () => {
       }
    })
 
-   const handleDeleteDoctor = doctor => {
-      // console.log(doctor);
-      fetch(`http://localhost:5000/doctors/${doctor._id}`, {
+   const handleDeleteProduct = product => {
+
+      fetch(`http://localhost:5000/products/${product._id}`, {
          method: 'DELETE',
          headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -41,7 +41,7 @@ const ManageProducts = () => {
             // console.log(data)
             if (data.deletedCount > 0) {
                refetch()
-               toast.success(`Doctor ${doctor.name} deleted successfully`)
+               toast.success(`Product ${product.name} deleted successfully`)
             }
          })
    }
@@ -49,7 +49,7 @@ const ManageProducts = () => {
 
    return (
       <div>
-         <h2 className='text-center text-3xl font-bold'>Manage Doctors: {doctors?.length}</h2>
+         <h2 className='text-center text-3xl font-bold'>Manage Products: {products?.length}</h2>
 
          <div className="overflow-x-auto">
             <table className="table w-full">
@@ -66,21 +66,21 @@ const ManageProducts = () => {
                <tbody>
 
                   {
-                     doctors?.map((doctor, i) =>
-                        <tr key={doctor._id}>
+                     products?.map((product, i) =>
+                        <tr key={product._id}>
                            <th>{i + 1}</th>
                            <td>
                               <div className="avatar">
                                  <div className=" w-12 lg:w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src={doctor?.image} alt='' />
+                                    <img src={product?.image} alt='' />
                                  </div>
                               </div></td>
-                           <td>{doctor.name}</td>
-                           <td>{doctor.email}</td>
-                           <td>{doctor.specialty}</td>
+                           <td>{product.name}</td>
+                           <td>{product.email}</td>
+                           <td>{product.specialty}</td>
                            <td>
                               <label onClick={() => {
-                                 setDeletingDoctor(doctor)
+                                 setDeletingProduct(product)
                               }} htmlFor="my-modal" className="btn btn-sm btn-ghost"><FaTrash></FaTrash></label>
                            </td>
                         </tr>
@@ -92,13 +92,13 @@ const ManageProducts = () => {
             </table>
          </div>
          {
-            deletingDoctor && <ConformationModal
+            deletingProduct && <ConformationModal
                title={`Are you sure you want to delete?`}
-               message={`If you delete ${deletingDoctor.name}. You cannot get data back`}
+               message={`If you delete ${deletingProduct.name}. You cannot get data back`}
                closeModal={closeModal}
-               successAction={handleDeleteDoctor}
+               successAction={handleDeleteProduct}
                successBtnName='Delete'
-               modalData={deletingDoctor}
+               modalData={deletingProduct}
             ></ConformationModal>
          }
       </div>
