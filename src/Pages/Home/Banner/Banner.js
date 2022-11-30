@@ -16,7 +16,7 @@ const Banner = () => {
                </svg>
                <img
                   className="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none md:h-96 lg:h-full"
-                  src='https://i.ibb.co/YWT3sfj/pexels-ronmar-lacamiento-806363.jpg'
+                  src='https://i.ibb.co/wYn3cZh/samsung-s21.jpg'
                   alt=""
                />
             </div>

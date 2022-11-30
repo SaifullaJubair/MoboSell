@@ -5,6 +5,7 @@ import router from './Routes/Routes/Routes';
 import { useEffect } from 'react';
 import Aos from 'aos';
 import "aos/dist/aos.css";
+import ScrollToTop from 'react-scroll-to-top';
 
 function App() {
   useEffect(() => {
@@ -15,6 +16,7 @@ function App() {
     <div className='max-w-[1440px] mx-auto'>
       <RouterProvider router={router}></RouterProvider>
       <Toaster></Toaster>
+      <ScrollToTop smooth />
     </div>
   );
 }

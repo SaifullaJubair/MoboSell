@@ -4,32 +4,28 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import { Helmet } from 'react-helmet-async';
-// import useToken from '../../hooks/useToke';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
    const { signIn, signInGoogle } = useContext(AuthContext)
    const { register, formState: { errors }, handleSubmit } = useForm();
    const [loginError, setLoginError] = useState('')
    const [loginUserEmail, setLoginUserEmail] = useState('');
-   // const [token] = useToken(loginUserEmail);
-   // const location = useLocation()
-   // const navigate = useNavigate()
-   // const from = location.state?.from?.pathname || '/'
-
-   // if (token) {
-   //    navigate(from, { replace: true })
-   // }
-
+   const [token] = useToken(loginUserEmail);
    const location = useLocation()
    const navigate = useNavigate()
-   const from = location.state?.pathname || '/'
+   const from = location.state?.from?.pathname || '/'
+
+   if (token) {
+      navigate(from, { replace: true })
+   }
    const handleLogin = (data) => {
-      console.log(data)
+      // console.log(data)
       setLoginError('')
       signIn(data.email, data.password)
          .then(res => {
             const user = res.user
-            console.log(user);
+            // console.log(user);
             setLoginUserEmail(data.email)
             toast.success('Successfully login')
 
@@ -39,24 +35,36 @@ const Login = () => {
             setLoginError(error.message)
          })
 
-
    }
    const handleGoogleSignIn = () => {
       signInGoogle()
          .then(res => {
             const user = res.user;
-            console.log(user)
-            navigate(from, { replace: true })
+            // console.log(user)
+            saveUser(user?.displayName, user?.email)
          })
          .catch(error => {
             console.error(error);
          })
    }
-
+   const saveUser = (name, email) => {
+      const user = { name, email, role: "buyer" };
+      fetch('http://localhost:5000/users', {
+         method: 'POST',
+         headers: {
+            'content-type': 'application/json'
+         },
+         body: JSON.stringify(user)
+      })
+         .then(res => res.json())
+         .then(data => {
+            setLoginUserEmail(email)
+         })
+   }
    return (
       <div>
          <Helmet>
-            <title>Log-In</title>
+            <title>LogIn</title>
          </Helmet>
          <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 mx-auto my-12 ">
             <h1 className="text-2xl font-bold text-center">Login</h1>

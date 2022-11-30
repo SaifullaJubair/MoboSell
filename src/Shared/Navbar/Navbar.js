@@ -14,7 +14,7 @@ const Navbar = () => {
 
 
    return (
-      <div>
+      <div data-theme="wireframe">
          <div className="navbar bg-base-100 py-5">
             <div className="navbar-start">
                <div className="dropdown">

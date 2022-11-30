@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Context/AuthProvider';
+import Loading from '../../../Shared/Loading/Loading';
 
 
 const AddProduct = () => {
@@ -15,22 +16,13 @@ const AddProduct = () => {
    const { data: categories, isLoading } = useQuery({
       queryKey: ['category'],
       queryFn: async () => {
-         const res = await fetch('https://mobosell-server-a12.vercel.app/categories');
+         const res = await fetch('http://localhost:5000/categories');
          const data = await res.json();
          return data;
 
       }
    })
-   // console.log(categories)
 
-   // const handleAddProduct = data => {
-   //    console.log(data.category)
-   //    const info = data.category.split('-')
-   //    const id = info[0]
-   //    const name = info[1]
-   //    console.log('id:', id)
-   //    console.log("name:", name);
-   // }
 
    const handleAddProduct = data => {
       const info = data.category.split('-')
@@ -49,7 +41,7 @@ const AddProduct = () => {
          .then(res => res.json())
          .then(imgData => {
             if (imgData.success) {
-               console.log(imgData.data.url)
+               // console.log(imgData.data.url)
                const product = {
                   name: data.productName,
                   categoryName,
@@ -66,25 +58,23 @@ const AddProduct = () => {
                   image: imgData.data?.url,
                   userImg: user?.photoURL
                }
-               console.log(product);
+               // console.log(product);
                //save categories info to the database
-               fetch('https://mobosell-server-a12.vercel.app/products', {
+               fetch('http://localhost:5000/products', {
                   method: 'POST',
                   headers: {
                      'content-type': 'application/json',
-                     // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                   },
                   body: JSON.stringify(product)
                })
                   .then(res => res.json())
                   .then(result => {
-                     console.log(result);
                      toast.success(`${data.productName} is added successfully`)
-                     // Navigate('/dashboard/manageCategories')
+                     navigate('/dashboard/my-products')
                   })
             }
          })
-
    }
    const Conditions = [
       {
@@ -109,16 +99,15 @@ const AddProduct = () => {
       },
    ]
 
-   // if (isLoading) {
-   //    return <Loading></Loading>
-   // }
+   if (isLoading) {
+      return <Loading></Loading>
+   }
 
    return (
-      <div data-theme="">
-         <div className='w-full max-w-md p-8 space-y-3 rounded-xl   mx-auto my-12 text-black">
-      <h1 className="text-2xl font-bold text-center'>
-            <h1>Add A Category</h1>
-            <form onSubmit={handleSubmit(handleAddProduct)}>
+      <div >
+         <div className='w-full  rounded-xl font-semibold  text-black'>
+            <h1 className='text-2xl font-bold text-center'>Add A Product</h1>
+            <form onSubmit={handleSubmit(handleAddProduct)} className="lg:mx-0 md:mx-4 mx-3">
                <div className="form-control  ">
                   <label className="label"> <span className="label-text">Product Name</span></label>
                   <input type="text" {...register("productName", {
@@ -140,10 +129,6 @@ const AddProduct = () => {
                            </option>)
                      }
                   </select>
-                  {/* <input type="text" {...register("category", {
-                     required: "Category is Required"
-                  })} className="input input-bordered w-full " />
-                  {errors.category && <p className='text-red-500'>{errors.category.message}</p>} */}
                </div>
                <div className="form-control w-full ">
                   <label className="label"> <span className="label-text">Seller's Name</span></label>
@@ -167,49 +152,53 @@ const AddProduct = () => {
                   })} className="input input-bordered w-full " />
                   {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
                </div>
-               <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Original Price</span></label>
-                  <input type="number" {...register("originalPrice", {
-                     required: true
-                  })} className="input input-bordered w-full " />
-                  {errors.originalPrice && <p className='text-red-500'>{errors.originalPrice.message}</p>}
+               <div className='flex'>
+                  <div className="form-control w-full mr-2">
+                     <label className="label"> <span className="label-text">Original Price</span></label>
+                     <input type="number" {...register("originalPrice", {
+                        required: true
+                     })} className="input input-bordered w-full " />
+                     {errors.originalPrice && <p className='text-red-500'>{errors.originalPrice.message}</p>}
+                  </div>
+                  <div className="form-control w-full  ">
+                     <label className="label"> <span className="label-text">Resell Price</span></label>
+                     <input type="number" {...register("resellPrice", {
+                        required: true
+                     })} className="input input-bordered w-full " />
+                     {errors.resellPrice && <p className='text-red-500'>{errors.resellPrice.message}</p>}
+                  </div>
+                  <div className="form-control w-full  ml-2">
+                     <label className="label"> <span className="label-text">Year of purchase</span></label>
+                     <input type="number" {...register("purchaseYear", {
+                        required: true
+                     })} className="input input-bordered w-full " />
+                     {errors.purchaseYear && <p className='text-red-500'>{errors.purchaseYear.message}</p>}
+                  </div>
                </div>
-               <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Resell Price</span></label>
-                  <input type="number" {...register("resellPrice", {
-                     required: true
-                  })} className="input input-bordered w-full " />
-                  {errors.resellPrice && <p className='text-red-500'>{errors.resellPrice.message}</p>}
-               </div>
-               <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Year of purchase</span></label>
-                  <input type="number" {...register("purchaseYear", {
-                     required: true
-                  })} className="input input-bordered w-full " />
-                  {errors.purchaseYear && <p className='text-red-500'>{errors.purchaseYear.message}</p>}
-               </div>
-               <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Mobile Number</span></label>
-                  <input type="number" {...register("number", {
-                     required: true
-                  })} className="input input-bordered w-full " />
-                  {errors.number && <p className='text-red-500'>{errors.number.message}</p>}
-               </div>
+               <div className='flex'>
+                  <div className="form-control w-full mr-4">
+                     <label className="label"> <span className="label-text">Mobile Number</span></label>
+                     <input type="number" {...register("number", {
+                        required: true
+                     })} className="input input-bordered w-full " />
+                     {errors.number && <p className='text-red-500'>{errors.number.message}</p>}
+                  </div>
 
-               <div className="form-control w-full ">
-                  <label className="label"> <span className="label-text">Condition type</span></label>
-                  <select {...register('condition')}
-                     className="select  select-bordered font-bold w-full text-black">
-                     {
-                        Conditions?.map(Condition =>
-                           <option className='bg-base-300 text-black'
-                              key={Condition.id}
-                              value={Condition.conditionName}
-                           >{Condition.conditionName}
-                           </option>)
-                     }
-                  </select>
+                  <div className="form-control w-full ">
+                     <label className="label"> <span className="label-text">Condition type</span></label>
+                     <select {...register('condition')}
+                        className="select  select-bordered font-bold w-full text-black">
+                        {
+                           Conditions?.map(Condition =>
+                              <option className='bg-base-300 text-black'
+                                 key={Condition.id}
+                                 value={Condition.conditionName}
+                              >{Condition.conditionName}
+                              </option>)
+                        }
+                     </select>
 
+                  </div>
                </div>
 
                <div className="form-control w-full ">

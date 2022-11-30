@@ -1,15 +1,21 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import { GoAlert } from "react-icons/go";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 
 const ProductDetails = () => {
    const { user } = useContext(AuthContext);
 
    const product = useLoaderData()
-   const { name, _id, categoryName, email, sellerName, location, originalPrice, resellPrice, purchseYear, number, description, image, condition, purchaseYear } = product
+   const { name, _id, categoryName, email, sellerName, location, originalPrice, resellPrice, number, description, image, condition, purchaseYear } = product
    // console.log(product);
+   const navigate = useNavigate()
+
 
    const handleBooking = event => {
 
@@ -17,7 +23,7 @@ const ProductDetails = () => {
       event.preventDefault()
       const form = event.target;
       const userName = form.userName.value;
-      const userEmail = form.userEmail.value;
+      const email = form.email.value;
       const productName = form.productName.value;
       const phone = form.phone.value;
       const price = form.price.value;
@@ -26,35 +32,58 @@ const ProductDetails = () => {
       const booking = {
 
          userName,
-         userEmail,
+         email,
          productName,
          price,
          phone,
          location,
-      }
-      console.log(booking)
+         productId: _id,
 
-      fetch('https://mobosell-server-a12.vercel.app/bookings', {
-         method: 'POST',
+      }
+      // console.log(booking)
+
+
+
+      // fetch('http://localhost:5000/bookings', {
+      //    method: 'POST',
+      //    headers: {
+      //       'content-type': 'application/json'
+      //    },
+      //    body: JSON.stringify(booking)
+      // })
+
+      axios.post('http://localhost:5000/bookings', booking)
+         .then(res => {
+            // console.log(data);
+            if (res.data.acknowledged) {
+               toast.success('Booking Confirmed')
+               form.reset()
+               navigate('/dashboard')
+
+            }
+            else {
+               toast.error(res.data.message)
+            }
+         })
+   }
+
+
+   const handleReport = () => {
+      fetch(`http://localhost:5000/report/${_id}`, {
+         method: 'PUT',
          headers: {
-            'content-type': 'application/json'
-         },
-         body: JSON.stringify(booking)
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+         }
       })
          .then(res => res.json())
          .then(data => {
-            // console.log(data);
-            if (data.acknowledged) {
-               toast.success('Booking Confirmed')
-               form.reset()
+            if (data.modifiedCount > 0) {
+               toast.success('Successfully Reported.')
             }
             else {
-               toast.error(data.message)
+               toast.error('You Already Report this Product')
             }
          })
-
-
-
    }
    return (
       <div>
@@ -62,10 +91,12 @@ const ProductDetails = () => {
             <div className="grid gap-5 row-gap-10 lg:grid-cols-2">
                <div className="flex flex-col justify-center">
                   <div className="max-w-xl mb-6">
-                     <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                        {name}
-
-                     </h2>
+                     <div className='flex items-center justify-between '>
+                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                           {name}
+                        </h2>
+                        <p className='text-3xl' title='Report' onClick={handleReport}><GoAlert></GoAlert></p>
+                     </div>
                      <p className='font-semibold  text-xl'>Original Price: <span className='text-primary text-2xl font-bold'>TK {originalPrice}</span></p>
                      <p className='font-semibold  text-xl'>Resell Price:  <span className='text-primary text-2xl font-bold'>TK {resellPrice}</span></p>
 
@@ -185,24 +216,6 @@ const ProductDetails = () => {
                                  />
                               </svg>
                            </span>
-                           Contact: {number}
-                        </li>
-                        <li className="flex">
-                           <span className="mr-1">
-                              <svg
-                                 className="w-5 h-5 mt-px text-deep-purple-accent-400"
-                                 stroke="currentColor"
-                                 viewBox="0 0 52 52"
-                              >
-                                 <polygon
-                                    strokeWidth="4"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    fill="none"
-                                    points="29 13 14 29 25 29 23 39 38 23 27 23"
-                                 />
-                              </svg>
-                           </span>
                            Location: {location}
                         </li>
                         <li className="flex">
@@ -221,17 +234,41 @@ const ProductDetails = () => {
                                  />
                               </svg>
                            </span>
-                           Email: {email}
+                           Contact: {number}
+                        </li>
+
+                        <li className="flex">
+                           <span className="mr-1">
+                              <svg
+                                 className="w-5 h-5 mt-px text-deep-purple-accent-400"
+                                 stroke="currentColor"
+                                 viewBox="0 0 52 52"
+                              >
+                                 <polygon
+                                    strokeWidth="4"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    fill="none"
+                                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                                 />
+                              </svg>
+                           </span>
+                           {email}
                         </li>
                      </ul>
                   </div>
                </div>
                <div>
-                  <img
-                     className="object-cover w-full h-56 rounded shadow-lg sm:h-96"
-                     src={image}
-                     alt=""
-                  />
+                  <PhotoProvider>
+                     <PhotoView src={image}>
+                        <img
+                           className="object-cover w-full h-56 rounded shadow-lg sm:h-96"
+                           src={image}
+                           alt=""
+                        />
+                     </PhotoView>
+                  </PhotoProvider>
+
                </div>
                <label
                   htmlFor="booking-modal"
@@ -257,10 +294,10 @@ const ProductDetails = () => {
 
 
                      <label className='ml-2' >User Email</label>
-                     <input type="email" placeholder="Your Email" className="input input-bordered my-2 input-primary w-full " defaultValue={user?.email} required name='userEmail' disabled />
+                     <input type="email" placeholder="Your Email" className="input input-bordered my-2 input-primary w-full " defaultValue={user?.email} required name='email' disabled />
 
                      <label className='ml-2' >Model Name</label>
-                     <input type="number" className="input input-bordered my-2 input-primary w-full " defaultValue={name} required name='productName' disabled />
+                     <input type="text" className="input input-bordered my-2 input-primary w-full " defaultValue={name} required name='productName' disabled />
 
                      <label className='ml-2' >Price</label>
                      <input type="number" className="input input-bordered my-2 input-primary w-full " defaultValue={resellPrice} required name='price' disabled />

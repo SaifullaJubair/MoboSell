@@ -32,7 +32,7 @@ const AddCategories = () => {
                   image: imgData.data?.url
                }
                //save categories info to the database
-               fetch('https://mobosell-server-a12.vercel.app/categories', {
+               fetch('http://localhost:5000/categories', {
                   method: 'POST',
                   headers: {
                      'content-type': 'application/json',
@@ -42,7 +42,7 @@ const AddCategories = () => {
                })
                   .then(res => res.json())
                   .then(result => {
-                     console.log(result);
+                     // console.log(result);
                      toast.success(`${data.name} is added successfully`)
                      // Navigate('/dashboard/manageCategories')
                   })
