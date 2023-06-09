@@ -12,13 +12,13 @@ const DashboardLayout = () => {
    const [isAdmin, isAdminLoading] = useAdmin(user?.email)
    const [isSeller, isSellerLoading] = useSeller(user?.email)
    const [isBuyer, isBuyerLoading] = useBuyer(user?.email)
-   if (isAdminLoading || isSellerLoading) {
+   if (isAdminLoading || isSellerLoading || isBuyerLoading) {
       return <Loading></Loading>
    }
 
    // console.log(isAdmin)
    return (
-      <div >
+      <div>
          <Navbar></Navbar>
          <div className="drawer drawer-mobile ">
             <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />

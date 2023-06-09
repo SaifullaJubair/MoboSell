@@ -49,7 +49,7 @@ const Login = () => {
    }
    const saveUser = (name, email) => {
       const user = { name, email, role: "buyer" };
-      fetch('http://localhost:5000/users', {
+      fetch('https://mobosell-server-a12.vercel.app/users', {
          method: 'POST',
          headers: {
             'content-type': 'application/json'

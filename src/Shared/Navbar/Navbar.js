@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUserAlt } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Navbar = () => {
@@ -53,13 +53,13 @@ const Navbar = () => {
                <div className=" hidden  lg:flex lg:text-lg font-semibold">
                   <ul className="menu menu-horizontal">
 
-                     <li className='mx-1'><Link to='blog'>Blog</Link></li>
+                     <li className='mx-1'><Link to='/blog'>Blog</Link></li>
 
 
                      {
                         user?.uid ?
                            <>
-                              <li><Link to='dashboard'> DashBoard</Link></li>
+                              <li><Link to='/dashboard'> DashBoard</Link></li>
                               <button className='mx-2 lg:text-lg text-xs font-semibold nav' onClick={handleLogOut}> Logout</button>
 
                            </>
@@ -83,7 +83,7 @@ const Navbar = () => {
                            <img title={user?.displayName} className='h-12 rounded-full ' src={user?.photoURL} alt="User_Photo" />
                         </>
                         :
-                        <span  ><FaUserAlt title={user?.displayName} ></FaUserAlt> </span>
+                        <span><FaUser title={user?.displayName} ></FaUser> </span>
                   }
 
                </Link>

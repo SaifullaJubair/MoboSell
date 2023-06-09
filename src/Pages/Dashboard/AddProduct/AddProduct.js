@@ -16,7 +16,7 @@ const AddProduct = () => {
    const { data: categories, isLoading } = useQuery({
       queryKey: ['category'],
       queryFn: async () => {
-         const res = await fetch('http://localhost:5000/categories');
+         const res = await fetch('https://mobosell-server-a12.vercel.app/categories');
          const data = await res.json();
          return data;
 
@@ -60,7 +60,7 @@ const AddProduct = () => {
                }
                // console.log(product);
                //save categories info to the database
-               fetch('http://localhost:5000/products', {
+               fetch('https://mobosell-server-a12.vercel.app/products', {
                   method: 'POST',
                   headers: {
                      'content-type': 'application/json',

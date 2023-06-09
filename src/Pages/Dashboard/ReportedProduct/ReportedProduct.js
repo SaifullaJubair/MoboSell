@@ -14,7 +14,7 @@ const ReportedProduct = () => {
    const { data: products = [], refetch } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
-         const res = await fetch('http://localhost:5000/report');
+         const res = await fetch('https://mobosell-server-a12.vercel.app/report');
          const data = await res.json();
          return data
       }
@@ -22,7 +22,7 @@ const ReportedProduct = () => {
 
    const handleDeleteProduct = product => {
       // console.log(product);
-      fetch(`http://localhost:5000/products/${product._id}`, {
+      fetch(`https://mobosell-server-a12.vercel.app/products/${product._id}`, {
          method: 'DELETE',
          headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`

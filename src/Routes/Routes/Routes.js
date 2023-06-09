@@ -43,12 +43,12 @@ const router = createBrowserRouter([
          {
             path: '/category/:id',
             element: <PrivateRoute> <Products></Products></PrivateRoute>,
-            loader: ({ params }) => axios.get(`http://localhost:5000/category/${params.id}`)
+            loader: ({ params }) => axios.get(`https://mobosell-server-a12.vercel.app/category/${params.id}`)
          },
          {
             path: '/product/:id',
             element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-            loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`)
+            loader: ({ params }) => fetch(`https://mobosell-server-a12.vercel.app/product/${params.id}`)
          },
          {
             path: '/login',
@@ -111,7 +111,7 @@ const router = createBrowserRouter([
          {
             path: '/dashboard/payment/:id',
             element: <Payment></Payment>,
-            loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            loader: ({ params }) => fetch(`https://mobosell-server-a12.vercel.app/bookings/${params.id}`)
 
          },
       ]

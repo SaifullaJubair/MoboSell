@@ -11,7 +11,7 @@ const MyOrders = () => {
    const closeModal = () => {
       setDeletingBooking(null)
    }
-   const url = `http://localhost:5000/bookings?email=${user?.email}`
+   const url = `https://mobosell-server-a12.vercel.app/bookings?email=${user?.email}`
    const { data: bookings = [], refetch } = useQuery({
       queryKey: ['bookings', user?.email],
       queryFn: async () => {
@@ -27,7 +27,7 @@ const MyOrders = () => {
 
    const handleDeleteBooking = bookings => {
       console.log(bookings);
-      fetch(`http://localhost:5000/bookings/${bookings._id}`, {
+      fetch(`https://mobosell-server-a12.vercel.app/bookings/${bookings._id}`, {
          method: 'DELETE',
          headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`

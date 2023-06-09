@@ -11,7 +11,7 @@ const MyProducts = () => {
    const closeModal = () => {
       setDeletingProduct(null)
    }
-   const url = `http://localhost:5000/sellerProducts?email=${user?.email}`
+   const url = `https://mobosell-server-a12.vercel.app/sellerProducts?email=${user?.email}`
    const { data: products = [], refetch } = useQuery({
       queryKey: ['products', user?.email],
       queryFn: async () => {
@@ -27,7 +27,7 @@ const MyProducts = () => {
 
    const handleDeleteProduct = product => {
       // console.log(product);
-      fetch(`http://localhost:5000/products/${product._id}`, {
+      fetch(`https://mobosell-server-a12.vercel.app/products/${product._id}`, {
          method: 'DELETE',
          headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -47,7 +47,7 @@ const MyProducts = () => {
    const { data: bookings = [] } = useQuery({
       queryKey: ['bookings', user?.email],
       queryFn: async () => {
-         const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+         const res = await fetch(`https://mobosell-server-a12.vercel.app/bookings?email=${user?.email}`, {
             headers: {
                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }

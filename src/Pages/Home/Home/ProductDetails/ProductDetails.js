@@ -45,7 +45,7 @@ const ProductDetails = () => {
 
 
 
-      // fetch('http://localhost:5000/bookings', {
+      // fetch('https://mobosell-server-a12.vercel.app/bookings', {
       //    method: 'POST',
       //    headers: {
       //       'content-type': 'application/json'
@@ -53,7 +53,7 @@ const ProductDetails = () => {
       //    body: JSON.stringify(booking)
       // })
 
-      axios.post('http://localhost:5000/bookings', booking)
+      axios.post('https://mobosell-server-a12.vercel.app/bookings', booking)
          .then(res => {
             // console.log(data);
             if (res.data.acknowledged) {
@@ -70,7 +70,7 @@ const ProductDetails = () => {
 
 
    const handleReport = () => {
-      fetch(`http://localhost:5000/report/${_id}`, {
+      fetch(`https://mobosell-server-a12.vercel.app/report/${_id}`, {
          method: 'PUT',
          headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
